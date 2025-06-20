@@ -1,0 +1,52 @@
+Subject: File Descriptor-Based Access to TCC-Protected Data (Process-Free, Swift-Free, CVE-Eligible)
+
+Dear Apple Security Team,
+
+This is a reproducible vulnerability report demonstrating unauthorized access to TCC-protected user data via recursive file descriptor transfer.
+
+No Swift, GUI, entitlements, or .app packaging is required. All code is written in standard C using open(), socketpair(), and sendmsg(SCM_RIGHTS). The attack chain shows how a TCC-privileged process can transmit an open file descriptor into unrelated or sandboxed processes, including forkless, exec'd, delayed, or even post-reboot receivers.
+
+---
+
+▶️ Summary of Tested Cases:
+
+1. **BASIC FD Transfer** → Child reads protected plist via received FD
+2. **SANDBOXED Receiver** → Seatbelt profile applied to child, still able to read
+3. **FORKLESS exec()** → Parent executes a new process which receives FD
+4. **UNIX SOCKET Injection** → Arbitrary unrelated process reads FD via /tmp/socket
+5. **TIME-DELAYED Replay** → FD transmitted after delay; still valid
+6. **POST-REBOOT Access** → System rebooted, FD re-sent, receiver reads it
+
+---
+
+🧪 PoC Details:
+
+- macOS Version: 15.5 (build 24F74)
+- Device: MacBook Pro M4 Pro, 48GB RAM
+- TCC: Full Disk Access granted to Terminal.app
+- Language: C (POSIX API only)
+- No Swift, GUI, or external frameworks used
+- No GUI access prompts were triggered at any point
+
+---
+
+📁 Attachments:
+
+- `log.txt` → Full terminal output of all 6 tests
+- `fc_bounty_package.zip` → All .c source files
+- `submit_to_apple.txt` → This document
+
+All tests demonstrate reproducible and escalating access to protected user data such as:
+`~/Library/Preferences/com.apple.Safari.plist` → contains `IO_LaunchInfo_kAOSUIProfilePictureCropRect`
+
+---
+
+🔏 CVE Coordination:
+
+I’m open to assigning a CVE in coordination with Apple if this qualifies as a novel privacy/system boundary bypass.
+
+Please let me know if you would like me to demonstrate or validate any step further.
+
+Best regards,  
+Faruk Alpay  
+ORCID: https://orcid.org/0009-0009-2207-6528  
